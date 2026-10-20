@@ -28,4 +28,26 @@
  */
 export function chaiTapriRevenue(customers) {
   // Your code here
+  let special = 0;
+  let cutting = 0;
+  if(!Number.isInteger(customers) || customers <= 0){
+    return {totalChai:0,totalRevenue:0};
+  }
+  for(let i=1;i<=customers;i++){
+    if(i%3===0){
+    special = special + 15;
+    }else{
+    cutting = cutting + 10;
+    }
+  }
+  const totalEarning = special+cutting;
+  console.log(totalEarning);
+  
+return {totalChai:customers,totalRevenue:totalEarning};
+  
+
+
+
+
 }
+console.log(chaiTapriRevenue(6));
