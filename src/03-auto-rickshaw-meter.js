@@ -33,4 +33,45 @@
  */
 export function calculateAutoFare(distance, waitingMinutes = 0) {
   // Your code here
+  let first = 0;
+  let next4 = 0;
+  let beyond5 = 0;
+  let priceWait = 0;
+  
+  if(!Number.isFinite(distance) || distance<=0) return -1;
+  if( waitingMinutes<0 ) return -1;
+  const distanceceil = Math.ceil(distance);
+  let i = 1;
+  while(i<=distanceceil){
+    if(i===1){
+      first = first + 30;
+    }
+    if(i>1 && i<=5){
+      next4 = next4 + 15;
+    }
+    if(i>5){
+    beyond5 = beyond5 + 10; 
+    }
+    i++;
+  }
+  let pairCount = Math.ceil(waitingMinutes/2);
+  if(pairCount){
+    priceWait = pairCount*5;
+  }else{
+    priceWait;
+  }
+  
+  const final = first+next4+beyond5+priceWait;
+  return final;
+
+  
+
+
+
+    
+
+
+
 }
+
+
