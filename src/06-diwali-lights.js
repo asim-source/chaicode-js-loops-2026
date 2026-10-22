@@ -39,4 +39,62 @@
  */
 export function diwaliLightsPlan(lightStrings, budget) {
   // Your code here
+  let selectedList = [];
+  let costing = 0;
+  let totalCosting = 0;
+  let calLength = 0;
+  let totalLengthing = 0;
+ if(!Array.isArray(lightStrings) || !Number.isFinite(budget) || budget<=0 ){
+  return {selected:[],totalLength:0,totalCost:0}
+ }
+ for(const variable of lightStrings){
+  if(variable.color.toLowerCase()==="golden".toLowerCase()){
+    costing = variable.length*50;
+    variable.cost = costing;
+    calLength = variable.length;
+
+  }
+  else if(variable.color.toLowerCase()==="multicolor".toLowerCase()){
+    costing = variable.length*40;
+    variable.cost = costing;
+    calLength = variable.length;
+  }
+  else if(variable.color.toLowerCase()==="white".toLowerCase()){
+    costing = variable.length*30;
+    variable.cost = costing;
+    calLength = variable.length;
+  }
+  else{
+    costing = variable.length*35;
+    variable.cost = costing;
+    calLength = variable.length;
+  }
+  totalLengthing = totalLengthing + calLength;
+  totalCosting = totalCosting+costing;
+  selectedList.push(variable);
 }
+
+while(totalCosting>budget){
+const lastElement = selectedList.pop();
+totalCosting = totalCosting - lastElement.cost;
+totalLengthing = totalLengthing - lastElement.length;
+ }
+
+ return{selected:selectedList,totalLength:totalLengthing,totalCost:totalCosting};
+
+}
+
+  
+
+
+
+
+
+
+  
+
+
+  
+
+
+
