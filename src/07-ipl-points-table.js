@@ -38,4 +38,267 @@
  */
 export function iplPointsTable(matches) {
   // Your code here
+  let currentObj = {};
+  let initialObject = 
+  {
+    
+  
+
+
+  }
+
+
+  if(!Array.isArray(matches) || matches.length===0) return [];
+ 
+  for(let i=0;i<matches.length;i++){
+    currentObj = {...matches[i]};
+    // console.log(currentObj);
+    if(initialObject[currentObj.team1]===undefined || initialObject[currentObj.team1]!==undefined){
+      if(initialObject[currentObj.team1]===undefined){
+        initialObject[currentObj.team1] = {};
+        if(currentObj.result.toLowerCase()==="win".toLowerCase() && currentObj.winner.toLowerCase()===currentObj.team1.toLowerCase() ){
+        initialObject[currentObj.team1].team = currentObj.team1;
+        initialObject[currentObj.team1].played = 1;
+        initialObject[currentObj.team1].won = 1;
+        initialObject[currentObj.team1].lost = 0;
+        initialObject[currentObj.team1].tied = 0;
+        initialObject[currentObj.team1].noResult = 0;
+        initialObject[currentObj.team1].points = 2;
+
+      }else if (currentObj.result.toLowerCase()==="win".toLowerCase() && currentObj.winner.toLowerCase()!==currentObj.team1.toLowerCase()){
+        initialObject[currentObj.team1].team = currentObj.team1;
+        initialObject[currentObj.team1].played = 1;
+        initialObject[currentObj.team1].won = 0;
+        initialObject[currentObj.team1].lost = 1;
+        initialObject[currentObj.team1].tied = 0;
+        initialObject[currentObj.team1].noResult = 0;
+        initialObject[currentObj.team1].points = 0;  
+
+      } else if(currentObj.result.toLowerCase()==="tie".toLowerCase()){
+        initialObject[currentObj.team1].team = currentObj.team1;
+        initialObject[currentObj.team1].played = 1;
+        initialObject[currentObj.team1].won = 0;
+        initialObject[currentObj.team1].lost = 0;
+        initialObject[currentObj.team1].tied = 1;
+        initialObject[currentObj.team1].noResult = 0;
+        initialObject[currentObj.team1].points = 1;
+      } else{
+        initialObject[currentObj.team1].team = currentObj.team1;
+        initialObject[currentObj.team1].played = 1;
+        initialObject[currentObj.team1].won = 0;
+        initialObject[currentObj.team1].lost = 0;
+        initialObject[currentObj.team1].tied = 0;
+        initialObject[currentObj.team1].noResult = 1;
+        initialObject[currentObj.team1].points = 1;
+      }
+
+      
+    }else{
+      
+      if(currentObj.result.toLowerCase()==="win".toLowerCase() && currentObj.winner.toLowerCase()===currentObj.team1.toLowerCase() ){
+        initialObject[currentObj.team1].played = initialObject[currentObj.team1].played + 1;
+        initialObject[currentObj.team1].won = initialObject[currentObj.team1].won + 1;
+        initialObject[currentObj.team1].points = initialObject[currentObj.team1].points + 2;
+      }else if (currentObj.result.toLowerCase()==="win".toLowerCase() && currentObj.winner.toLowerCase()!==currentObj.team1.toLowerCase()){
+        initialObject[currentObj.team1].played = initialObject[currentObj.team1].played + 1;
+        initialObject[currentObj.team1].lost = initialObject[currentObj.team1].lost + 1;
+      
+        // initialObject[currentObj.team1].points = 0;  
+      }
+
+      else if(currentObj.result.toLowerCase()==="tie".toLowerCase()){
+        initialObject[currentObj.team1].played = initialObject[currentObj.team1].played + 1;
+        initialObject[currentObj.team1].tied = initialObject[currentObj.team1].tied + 1;
+        initialObject[currentObj.team1].points = initialObject[currentObj.team1].points + 1;
+      }
+
+      else{
+        initialObject[currentObj.team1].played = initialObject[currentObj.team1].played + 1;
+        initialObject[currentObj.team1].noResult =  initialObject[currentObj.team1].noResult + 1;
+        initialObject[currentObj.team1].points = initialObject[currentObj.team1].points + 1;
+      }
+    }
+  }
+  
+  if(initialObject[currentObj.team2]===undefined || initialObject[currentObj.team2]!==undefined){
+    if(initialObject[currentObj.team2]===undefined){
+        initialObject[currentObj.team2] = {};
+        if(currentObj.result.toLowerCase()==="win".toLowerCase() && currentObj.winner.toLowerCase()===currentObj.team2.toLowerCase()){
+          initialObject[currentObj.team2].team = currentObj.team2;
+          initialObject[currentObj.team2].played = 1;
+          initialObject[currentObj.team2].won = 1;
+          initialObject[currentObj.team2].lost = 0;
+          initialObject[currentObj.team2].tied = 0;
+          initialObject[currentObj.team2].noResult = 0;
+          initialObject[currentObj.team2].points = 2;
+        }
+        else if (currentObj.result.toLowerCase()==="win".toLowerCase() && currentObj.winner.toLowerCase()!==currentObj.team2.toLowerCase()){
+          initialObject[currentObj.team2].team = currentObj.team2;
+          initialObject[currentObj.team2].played = 1;
+          initialObject[currentObj.team2].won = 0;
+          initialObject[currentObj.team2].lost = 1;
+          initialObject[currentObj.team2].tied = 0;
+          initialObject[currentObj.team2].noResult = 0;
+          initialObject[currentObj.team2].points = 0;  
+    
+        }else if(currentObj.result.toLowerCase()==="tie".toLowerCase()){
+          initialObject[currentObj.team2].team = currentObj.team2;
+          initialObject[currentObj.team2].played = 1;
+          initialObject[currentObj.team2].won = 0;
+          initialObject[currentObj.team2].lost = 0;
+          initialObject[currentObj.team2].tied = 1;
+          initialObject[currentObj.team2].noResult = 0;
+          initialObject[currentObj.team2].points = 1;
+        } else{
+          initialObject[currentObj.team2].team = currentObj.team2;
+          initialObject[currentObj.team2].played = 1;
+          initialObject[currentObj.team2].won = 0;
+          initialObject[currentObj.team2].lost = 0;
+          initialObject[currentObj.team2].tied = 0;
+          initialObject[currentObj.team2].noResult = 1;
+          initialObject[currentObj.team2].points = 1;
+        }
+      
+
+
+    }else{
+         if(currentObj.result.toLowerCase()==="win".toLowerCase() && currentObj.winner.toLowerCase()===currentObj.team2.toLowerCase() ){
+          initialObject[currentObj.team2].played = initialObject[currentObj.team2].played + 1;
+          initialObject[currentObj.team2].won = initialObject[currentObj.team2].won + 1;
+          initialObject[currentObj.team2].points = initialObject[currentObj.team2].points + 2;
+         
+        }else if (currentObj.result.toLowerCase()==="win".toLowerCase() && currentObj.winner.toLowerCase()!==currentObj.team2.toLowerCase()){
+          initialObject[currentObj.team2].played = initialObject[currentObj.team2].played + 1;
+          initialObject[currentObj.team2].lost = initialObject[currentObj.team2].lost + 1;
+          // initialObject[currentObj.team2].points = 0;  
+         
+        }
+    
+        else if(currentObj.result.toLowerCase()==="tie".toLowerCase()){
+          initialObject[currentObj.team2].played = initialObject[currentObj.team2].played + 1;
+          initialObject[currentObj.team2].tied = initialObject[currentObj.team2].tied + 1;
+          initialObject[currentObj.team2].points = initialObject[currentObj.team2].points + 1;
+        }
+    
+        else{
+          initialObject[currentObj.team2].played = initialObject[currentObj.team2].played + 1;
+          initialObject[currentObj.team2].noResult =  initialObject[currentObj.team2].noResult + 1;
+          initialObject[currentObj.team2].points = initialObject[currentObj.team2].points + 1;
+        }
+    
+      }
+
+    }
+
+  }
+  // console.log(initialObject);
+  const arrayOfArray = Object.entries(initialObject);
+  // console.log(arrayOfArray);
+ let sortedArray =  arrayOfArray.sort((a,b)=>{
+               if(b[1].points-a[1].points!==0){
+                return b[1].points-a[1].points ;
+               }else{
+                return a[0].localeCompare(b[0]);
+               }
+  });
+ 
+ const mapping = sortedArray.map((currentStats)=>{
+  return currentStats[1];
+ });
+ console.log(mapping);
+
+ return mapping;
+ 
+
+
 }
+iplPointsTable([
+    { team1: "CSK", team2: "MI", result: "win", winner: "CSK" },
+    { team1: "RCB", team2: "CSK", result: "tie" },
+  ]);
+
+
+
+
+
+
+    
+    
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+     
+  
+    
+
+    
+    
+
+
+
+
+
+
+
+
+  
+    
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+      
+    
+
+
+  
+  
+
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
