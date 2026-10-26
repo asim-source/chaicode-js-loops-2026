@@ -48,6 +48,7 @@ export function upiRetry(outcomes) {
   }
   let i = 0;
   do {
+    attemptTimes = attemptTimes + 1;
     if(outcomes[i]==="success"){
       succ = true;
       break;
@@ -70,12 +71,9 @@ export function upiRetry(outcomes) {
       }
       i = i+1;
      
-  }while(i<5 );
-  attemptTimes = i+1;
+  }while(i<5 && i<outcomes.length);
   totaltimeTaken = timeTaken1 + timeTaken2 + timeTaken3 + timeTaken4;
   return{attempts:attemptTimes,success:succ,totalWaitTime:totaltimeTaken};
 }
-
-
 
 
