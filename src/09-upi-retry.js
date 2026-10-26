@@ -36,4 +36,46 @@
  */
 export function upiRetry(outcomes) {
   // Your code here
+  let succ = false;
+  let attemptTimes = 0;
+  let timeTaken1 = 0;
+  let timeTaken2 = 0;
+  let timeTaken3 = 0;
+  let timeTaken4 = 0;
+  let totaltimeTaken;
+  if(!Array.isArray(outcomes) || outcomes.length===0) {
+    return { attempts: 0, success: false, totalWaitTime: 0 }; 
+  }
+  let i = 0;
+  do {
+    if(outcomes[i]==="success"){
+      succ = true;
+      break;
+    }
+  
+     if( i===0 && outcomes[0]==="fail"){
+        timeTaken1 = timeTaken1 + 1;
+      }
+      else if(i===1 && outcomes[1]==="fail"){
+        timeTaken2 = timeTaken1 + 1;
+      }
+    
+      else if(i===2 && outcomes[2]==="fail"){
+        timeTaken3 = timeTaken2 + 2;
+      }
+       else if(i===3 && outcomes[3]==="fail" ){
+        timeTaken4 = timeTaken3 + 4;
+      }else{
+        break;
+      }
+      i = i+1;
+     
+  }while(i<5 );
+  attemptTimes = i+1;
+  totaltimeTaken = timeTaken1 + timeTaken2 + timeTaken3 + timeTaken4;
+  return{attempts:attemptTimes,success:succ,totalWaitTime:totaltimeTaken};
 }
+
+
+
+
