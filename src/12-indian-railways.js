@@ -46,4 +46,44 @@
  */
 export function railwayReservation(passengers, trains) {
   // Your code here
-}
+  let finalArray = [];
+ 
+  
+  if(!Array.isArray(passengers) || !Array.isArray(trains) || passengers.length===0 || trains.length===0) return [];
+
+  
+  for(let i = 0;i<passengers.length; i++){
+      let counter = 0;
+    for(let j = 0; j<trains.length; j++){
+      if(passengers[i].trainNumber===trains[j].trainNumber){
+        counter = 1;
+          let prefer = passengers[i].preferred;
+         let fallbacking = passengers[i].fallback;
+
+         if(trains[j].seats[prefer]>0){
+          finalArray.push({name:passengers[i].name,trainNumber:passengers[i].trainNumber,class:passengers[i].preferred,status:"confirmed",})
+          trains[j].seats[prefer] = trains[j].seats[prefer]-1;
+        } else if(trains[j].seats[fallbacking]>0){
+          finalArray.push({name:passengers[i].name,trainNumber:passengers[i].trainNumber,class:passengers[i].fallback,status:"confirmed",})
+          trains[j].seats[fallbacking] = trains[j].seats[fallbacking]-1;
+        }else{
+          finalArray.push({name:passengers[i].name,trainNumber:passengers[i].trainNumber,class:passengers[i].preferred,status:"waitlisted",});
+        }
+
+      }
+                           
+      
+    }
+
+    
+  if(counter<1){
+    finalArray.push({name:passengers[i].name,trainNumber:passengers[i].trainNumber,class:null,status:"train_not_found",})
+    }
+  }
+   return finalArray ;
+  }
+    
+ 
+    
+      
+  
